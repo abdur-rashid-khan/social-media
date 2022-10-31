@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-// for hero icon 
-import { HomeIcon, MenuIcon, PuzzleIcon, ViewGridAddIcon } from '@heroicons/react/solid'
-import CustomLink from './Active/CustomLink';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../firebase.init';
-import Loading from '../Loading/Loading';
 import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+// for  icon 
+import { FaHome } from 'react-icons/fa';
+import { AiFillSetting } from 'react-icons/ai';
+import {HiMenuAlt2,HiViewGridAdd,HiPuzzle,} from 'react-icons/hi';
+import auth from '../../firebase.init';
+import Loading from '../share/Loading/Loading';
+import CustomLink from '../share/Active/CustomLink';
+
+
 
 const DashBoard = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -22,13 +26,13 @@ const DashBoard = () => {
   return (
     <>
       <div className="container mx-auto px-2 lg:px-0">
-        <div className="drawer drawer-mobile ">
+        <div className="drawer drawer-mobile h-[90vh]">
           <input id="open-dashboard-menu" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content  flex flex-col bg-slate-200 py-6" id='total_content'>
+          <div className="drawer-content flex flex-col bg-slate-200 py-6" id='total_content'>
             {/* <!-- Page content here --> */}
             <div className="text-left mt-4 fixed" style={{ zIndex: '1111111' }}>
-              <label htmlFor="open-dashboard-menu" className="w-10 rounded h-10 inline-block cursor-pointer bg-blue-500 hover:bg-blue-800 text-white lg:hidden"><span>
-                <MenuIcon />
+              <label htmlFor="open-dashboard-menu" className="w-10 rounded h-10 inline-block cursor-pointer bg-blue-500 hover:bg-blue-800 text-white lg:hidden"><span className='text-center'>
+                <HiMenuAlt2 className='text-4xl'/>
               </span> </label>
             </div>
             <div className="text-center ">
@@ -42,13 +46,13 @@ const DashBoard = () => {
 
           </div>
           <div className="drawer-side ">
-            <label htmlFor="open-dashboard-menu" className="drawer-overlay "></label>
-            <ul className="menu p-4 overflow-y-auto w-80 bg-[#ffffff] border-r border-[#00000018] shadow-2xl  text-slate-600 font-semibold" id='slideBar'>
-              <div className="profile text-center py-8">
+            <label htmlFor="open-dashboard-menu" className="drawer-overlay"></label>
+            <ul className="menu p-4 mt-4 overflow-y-auto w-[17rem] bg-[#ffffff] border-r border-[#00000018] shadow-2xl  text-slate-600 font-semibold" id='slideBar'>
+              <div className="profile text-center flex gap-3 items-center fixed bottom-0">
                 {
                   user?.photoURL ?
                     <div className="avatar online ">
-                      <div className="w-24 rounded-full">
+                      <div className="w-[30px] rounded-full">
                         <img src={user?.photoURL} alt='' />
                       </div>
                     </div>
@@ -61,18 +65,14 @@ const DashBoard = () => {
                       </div>
                     </div>
                 }
-
-                <strong className='block'>{user?.displayName}</strong>
-                {
-                  user ? <button className='capitalize mt-4 inline-block border text-slate-400 hover:bg-blue-700 text-sm hover:text-white px-6 py-2 rounded' onClick={logout}>logOut</button> :
-                    <Link to={'/login'} className='capitalize mt-1 inline-block border text-slate-400 hover:bg-blue-700 text-sm hover:text-white px-6 py-2 rounded'>logIn</Link>
-                }
+                <strong className='block text-sm'>{user?.displayName}</strong>
+                <button className='text-xl'><AiFillSetting></AiFillSetting></button>
               </div>
               {/* <!-- Sidebar content here --> */}
 
-              <li className='py-1 text-lg hover:text-black rounded'><CustomLink className='flex gap-4 capitalize' to={'/'}><HomeIcon className='text-slate-600 w-6 '></HomeIcon>Overview</CustomLink></li>
-              <li className='py-1 text-lg hover:text-black rounded'><CustomLink className='flex gap-4 capitalize' to={'/add-news'}><ViewGridAddIcon className='text-slate-600 w-6' /> Add News</CustomLink></li>
-              <li className='py-1 text-lg hover:text-black rounded'><CustomLink className='flex gap-4 capitalize' to={'/manage-news'}><PuzzleIcon className='text-slate-600 w-6' /> Manage News</CustomLink></li>
+              <li className='py-1 text-lg hover:text-black rounded'><CustomLink className='flex gap-4 capitalize' to={'/'}><FaHome className='text-slate-600 w-6 '></FaHome>Home</CustomLink></li>
+              <li className='py-1 text-lg hover:text-black rounded'><CustomLink className='flex gap-4 capitalize' to={'/create/new-post'}><HiViewGridAdd className='text-slate-600 w-6' />Create New Post</CustomLink></li>
+              <li className='py-1 text-lg hover:text-black rounded'><CustomLink className='flex gap-4 capitalize' to={'/manage-news'}><HiPuzzle className='text-slate-600 w-6' /> Manage Post</CustomLink></li>
             </ul>
           </div>
         </div>

@@ -10,8 +10,9 @@ import "./signUp.css";
 import { useForm } from "react-hook-form";
 import auth from "../../../firebase.init";
 import UseToken from "../../Hook/UseToken/UseToken";
-import Loading from "../../Loading/Loading";
+import Loading from "../../share/Loading/Loading";
 import LoginWithOther from "../Xlogin/Xlogin";
+
 const SignUp = () => {
   const [agree, setAgree] = useState(false);
   const navigate = useNavigate();

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
-import googleIcon from '../../../assets/img/google.png'
 import { useSignInWithFacebook, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { FcGoogle } from 'react-icons/fc';
 import auth from "../../../firebase.init";
 import UseToken from "../../Hook/UseToken/UseToken";
-import Loading from "../../Loading/Loading";
+import Loading from "../../share/Loading/Loading";
+
 
 
 const LoginWithOther = () => {
@@ -60,14 +61,14 @@ const LoginWithOther = () => {
         <div className="divider">OR</div>
       </div>
       <div className="flex items-center justify-center justify-items-center gap-4">
-        <div className="google hover:bg-slate-400 hover:text-white rounded border bg-slate-300 w-full">
-          <button onClick={loginWithGoogle}>
-            <span className="flex items-center pt-2 text-center ">
-              <img style={{ width: '45px', height: '45px' }} src={googleIcon} alt="google icon" />
+        <button className="w-full" onClick={loginWithGoogle}>
+          <div className="google text-center hover:bg-[#b8c3d1c0] hover:text-white rounded border bg-slate-300 w-full">
+            <span className="flex items-center gap-2 pt-2 justify-center">
+              <FcGoogle className="text-4xl" />
               <span className="capitalize text-slate-800 font-serif font-semibold">login with google</span>
             </span>
-          </button>
-        </div>
+          </div>
+        </button>
         {/* <div className="google">
           <button onClick={fbLogIn}>
             <img style={{ width: '36px', height: '36px' }} src={fbIcon} alt="fb icon" />
