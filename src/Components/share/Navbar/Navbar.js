@@ -49,7 +49,7 @@ const Navbar = () => {
 								<li><a href='/'>Item 3</a></li>
 							</ul>
 						</div> */}
-						<a href='/' className="btn btn-ghost normal-case text-xl">daisyUI</a>
+						<a href='/' className="btn btn-ghost normal-case text-xl">Demo</a>
 					</div>
 {/* 
 					<div className="navbar-center hidden lg:flex">
