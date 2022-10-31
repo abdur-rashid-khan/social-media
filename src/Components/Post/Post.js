@@ -23,11 +23,9 @@ const Post = () => {
                   console.log(p.postStatus)
                 }
                 <h1>{p.postStatus}</h1>
-                <h2>Hi</h2>
                 </>
               })
             }
-            <h1>hj</h1>
           </div>
         </div>
       </div>
